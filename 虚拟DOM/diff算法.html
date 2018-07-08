@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //==================什么是diff算法================
+    1、他是用来比较两个文本文件的差异,是代码版本管理的基石之一
+    //==================vdom 为甚用diff算法================
+    1、DOM节点的操作是比较消耗性能的,因此我们要尽量少操作DOM
+    2、找出DOM必须要更新的节点进行更新，其他的不许要修改.
+    3、找出前后里那个DOM的差异，就要用到diff
+    //==================diff算法的实现流程================
+
+    function createElement(vnode){
+        var tag = vnode.tag;
+        var attrs= vnode.attrs || {};
+        var children = vnode.children || [];
+        if(!tag){
+            return;
+        }
+        var elem = document.createElement(tag)
+        var attrName;
+        for(attrName in attrs){
+            if(attrs.hasOwnProperty(attrname)){
+                elem.setAttribute(attrName,attrs[attrName])
+            }
+        }
+        //子元素
+        children.forEach(item => {
+            elem.append(createElement(item))
+        });
+        return elem
+    }
+
+
+    function createElement(vonde){
+        var tag = vonde.tag;
+        var attrs = vnode.attrs || {};
+        var children = vnode.children || [];
+        if(!tag){
+            return;
+        };
+        var elem = document.createElement(tag);
+        var attrName 
+        for(attrName in attrs){
+            if(attrs.hasOwnProperty(attrName)){
+                elem.setAttribute(attrName , attrs[attrName])
+            }
+        }
+        children.forEach(function(item){
+            elem.appendChild(createElement(item))
+        })
+        return elem;
+    }
+    </script>
+</body>
+</html>

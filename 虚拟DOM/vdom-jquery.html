@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+    <button id="change">change</button>
+    <script src="../jquery-2.1.4.js"></script>
+    <script>
+        $(function(){
+            var data = [
+                {
+                    name:'张三',
+                    age:30,
+                    address:'北京'
+                },
+                {
+                    name:'李四',
+                    age:32,
+                    address:'上海'
+                },
+                {
+                    name:'王五',
+                    age:33,
+                    address:'广州'
+                }
+            ]
+
+            function render(data){
+                //清空wrap的内容
+                var $wrap = $('#wrap').html('');
+                var $table = $('<table></table>')
+                    $table.append('<tr><td>name</td><td>age</td><td>address</td><tr>')
+                data.forEach(function(item,index){
+                    $table.append('<tr><td>'+item.name+'</td><td>'+item.age+'</td><td>'+item.address+'</td><tr>')
+                });
+                $wrap.append($table)
+            }
+            //点击事件
+            
+            $('#change').click(function(){
+               
+                data[0].name="张三三";
+                data[0].age=40;
+                data[0].address = '鄢陵';
+               render(data)
+            })
+            //初始化renderha函数
+            render(data);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            tag : 'ul',
+            arrts: {
+                id:'list'
+            },
+            children:[
+                {
+                    tag:'li',
+                    attrs:{
+                        className:'item'
+                    },
+                    children:['item1']
+                },
+                {
+                    tag:'li',
+                    attrs:{
+                        className:'item'
+                    },
+                    children:['item2']
+                }
+            ]
+        }
+    </script>
+    <ul id="list">
+        <li class="item">item1</li>
+        <li class="item">item2</li>
+    </ul>
+
+    <script>
+        // ===================virtual-dom是什么?====================
+        //  virtual-dom (虚拟DOM)
+        //  用JS模拟虚拟DOM  (virtual-dom 是一个类似于缓存一样的东西存在JS与正式DOM之间， 在这里JS操作并不是真实的DOM  而是操作的虚拟DOM)
+        //  虚拟DOM与实际DOM进行对比，通过JS操作
+        //  目的：提高重绘性能
+        
+        DOM操作是昂贵的  js运行效率高
+        // ===================为什么要是用virtual-dom？====================
+        // ===================virtual-dom如何应用？====================
+        // ===================virtual-dom核心API是什么====================
+    </script>
+</body>
+</html>

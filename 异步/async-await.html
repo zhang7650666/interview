@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">哈哈哈</div>
+    <script>
+        async function fn(){
+            var oBox = document.getElementsByClassName('box')[0];
+            oBox.textContent = "嘻嘻嘻"
+            // async 放在函数前面，说明这个函数是一个异步函数，异步函数就不会阻塞后续代码的执行
+            //console.log('hello wrold')
+            return 'hello wrold'
+        }
+        //fn()
+        // 直接调用函数，函数是不会执行的 因为async 函数返回的是一个Promise对象，如果要获取Promise对象的返回值，我们要用then()
+       // console.log(fn()) 
+       fn().then(function(result) {
+          console.log(result)
+       })
+        console.log('虽然我在后面，但是我先执行了')
+
+        await 关键字只能放在async函数里
+        遇到await代码之后暂停，不会向下执行,知道Promise对象执行完毕，拿到Promise.resolve()的并返回，代码才会继续向下执行
+    </script>
+</body>
+</html>

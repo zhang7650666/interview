@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、Promise 是什么？  其实他是一个构造函数
+        //=========================Promise的基本应用==================
+        //注意事项  new Promise 就自执行了 (所以使用Promise  一般放在一个函数中)
+        // var p = new Promise((resolve,reject) =>{
+        //     setTimeout(function(){
+        //         console.log('时间到了')
+        //         resolve('执行成功')
+        //     },2000)
+        // })
+
+
+        //=========================Promise在函数中==================
+
+        // function runAsync(){
+        //     return new Promise((resolve, reject) =>{
+        //         setTimeout(function(){
+        //             console.log('执行成功')
+        //             resolve('fullfaild已经标识')
+        //         },2000)
+        //     })
+        // }
+        // runAsync().then(function(res){
+        //     console.log(res)
+        // })
+        // 注意这里的then的作用，就是像我们在使用普通函数的使用回调函数一样，他与普通函数相比，他的优势就是可已在她then函数里继续写Promise对象并执行。
+
+
+        //=========================多个Promise==================
+        function runAsync1(){
+            return new Promise((resolve,reject) =>{
+                setTimeout(function(){
+                    console.log('执行了run1')
+                    resolve('fullfaild1成功标识')
+                },1000)
+            })
+        }
+        function runAsync2(){
+            return new Promise((resolve,reject) =>{
+                setTimeout(function(){
+                    console.log('执行了run2')
+                    resolve('fullfaild2成功标识')
+                },1000)
+            })
+        }
+        function runAsync3(){
+            return new Promise((resolve,reject) =>{
+                setTimeout(function(){
+                    console.log('执行了run3')
+                    resolve('fullfaild3成功标识')
+                },1000)
+            })
+        }
+
+        // runAsync1().then(function(res){
+        //     console.log(res)
+        //     return runAsync2()
+        // }).then(function(res){
+        //     console.log(res)
+        //     return runAsync3()
+        // }).then(function(res){
+        //     console.log(res)
+        // })
+
+        // then和面可以跟两个回调函数  一个是resolve  一个是 reject ,这里的reject如果resove里面有报错，会阻断就是的执行
+        //catch resolve 如果有报错不会阻断js的执行  catch 就相当于try ...catch 捕获异常
+        // ======================================Promise.all的用法==============
+            Promise.all([runAsync1(),runAsync2(),runAsync3()]).then(function(res){
+                console.log(res)
+            })
+        // 等所有的异步都执行完了才会进入then函数  ，then接收到的是一个数组 (all 的方法其实就是那个最后执行以哪个为准执行回调)
+        //race的用法与all用法一样，就是那个最先执行，就以哪个为准执行回调 （常用在请求超时）
+
+        //====================Promise中ajax 封装====================
+        function ajax(options){
+            return new Promise((resolve,reject) =>{
+                var xhr = null;
+                if(window.XMLHttpRequest){
+                    xhr = new XMLHttpRequest
+                }else{
+                    xhr = new window.ActiveXObject('Mircosoft.XMLHTTP')
+                }
+               if(options.method === "GET" || options.method === "get") {
+                   xhr.open(options.method, options.url+'?'+options.params,options.async)
+                   xhr.send(null)
+               }else{
+                    xhr.open(options.method, options.url,options.async)
+                    xhr.setRequerHeader('Content-type','application/x-www-from-urlencoded')
+                   xhr.send(options.params)
+               }
+               xhr.onreadystatechange = function(){
+                   if(xhr.readyState == 4 && xhr.status === 2){
+                       resolve(xhr.resoponseText)
+                   }else{
+                    reject(xhr.status)
+                   }
+               }
+            })
+        }
+    </script>
+</body>
+</html>

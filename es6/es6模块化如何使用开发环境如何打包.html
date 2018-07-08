@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //========================es6模块化如何使用，开发环境如何打包=================
+        1、es5 模块化的使用
+            模块的输出
+                注意一个模块内，只能有一个模块输出
+                文件名 a.js
+                module.exports = {
+                    a:'1'
+                }
+            模块的引用
+                var a = require('./a.js')
+            
+        2、es6模块化的使用
+            模块的输出
+                方法1、export
+                    export 可以输出多次
+                    文件名 a.js
+                    export  {
+                        a:1,
+                        b:2,
+                        c:3,
+                    }
+
+                方法2、export default
+                    export default 一个文件下只能使用一次
+                    文件名 a.js
+                    export default {
+                        a:1,
+                        b:2,
+                        c:3,
+                    }
+            模块的引用
+                方法1 
+                    import {x as a, y as b, z as c} from './a.js'
+                方法2 
+                    import obj from './a.js'
+        3、es5 与 es6 输出方式的区别
+                module.exports   就相当于 export default
+        4、使用es6模块化的基本规则
+           1：每一个模块只加载一次， 每一个JS只执行一次， 如果下次再去加载同目录下同文件，直接从内存中读取。 一个模块就是一个单例，或者说就是一个对象；
+
+    　　　　2：每一个模块内声明的变量都是局部变量， 不会污染全局作用域；
+
+    　　　　3：模块内部的变量或者函数可以通过export导出；
+
+    　　　　4：一个模块可以导入别的模块
+    //========================开发环境如何打包=================
+    </script>
+</body>
+</html>

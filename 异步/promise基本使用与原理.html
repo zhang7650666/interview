@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function loading(src){
+            return new Promise(function(resolve, reject){
+                var img = document.createElement('img')
+                img.onload = function(){
+                    resolve('success');
+                }
+                img.onerror= function(){
+                    reject('error')
+                }
+               img.src = src
+            })
+         }   
+         loading().then(function(){
+             console.log('success')
+         },function(){
+             console.log('error')
+         })
+         Promise.all([loading1(),loading2(),loading3()]).then(function(){
+             //最慢的一个加载完成才会进入then函数
+         })
+         Promise.race([loading1(),loading2(),loading3()]).then(function(){
+             // 最快的一个加载完成才会进入then函数
+         })
+         loading().then(function(){
+             console.log('success')
+         },function(){
+             console.log('error')
+             //遇到success中的异常会终止js的执行，直接报错
+         }).catch(function(){
+             console.log('catch')
+             // 遇到succsess的报错  回想try...catch 捕获抛出错误(reject中的异常也可以捕获)
+         })
+         // ==================Promise的标准=================
+         状态变化是promise的核心
+            三种状态
+                pendding fulfilled rejected
+                pendding  未开始加载的状态(初始状态)
+                fulfilled  加载成功的状态
+                rejected    加载失败的状态
+
+                pendding 可以变成 fulfilled   或者   pendding变成rejected (不可逆)
+        then的标准
+            Promise必须实现then的方法
+            then()必须接收2个函数作为参数
+            then()返回的必须是一个Promise实例  (如果没有返回一个Promise的实例  那么后面的then指的还是前面的那个Promise实例)
+    </script>
+
+</body>
+</html>
