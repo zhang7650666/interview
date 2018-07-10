@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // =====================1、模板解析成render函数===============
+        1、 解析模板成render函数
+        a、 with 的用法， 自己开发的时候尽量不要使用
+        b、 模板中的所有信息都被render函数包含
+        c、 模板中用到的data中的属性， 最终都被render函数解析成了变量
+        d、 "模板中的指令(v-for v-if v- model...) 都被解析成了JS逻辑"
+        e、 render函数最终返回的是vnode
+        //=====================2、响应式监听==============
+        a、 Object.defineProperty(但是他不见容低版本浏览器， 是因为不支持shim的特性) shim 指把一个库引入一个旧的浏览器, 然后用旧的API, 实现一些新的API的功能.
+        b、 将data的属性代理到vm上(就是所有的属性， 最终都挂载到了vm对象上了)
+            //=====================3、首次渲染显示页面，并绑定依赖==============
+        a、
+    </script>
+</body>
+
+</html>

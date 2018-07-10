@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./Vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{price}}</p>
+    </div>
+    <script>
+        //===============模板是什么=============================
+        // 1、 本质就是字符串
+        // 2、 有逻辑 "如v-for v-if 这样的指令"
+        // 3、 与html结构很像, 但是有很大的区别
+        // 1、 例如html不能识别 "v-for v-if"
+        // 这样的指令
+        // 2、 html是静态的， 他没有逻辑
+        // 4、 模板最终还是要转成html来显示
+        // 5、 模板最终转换成JS代码 原因如下
+        // 1、 "有逻辑(v-if  v-for)只有JS才能处理逻辑(图灵完备)"
+        // 2、 转换成html渲染页面， 只有JS才能完成
+        // 因此模板最重要的是转成一个JS函数(render函数)
+
+        //===============render(渲染函数)===========================
+        // 1、 模板中所有的信息都包含在render函数里面
+        var vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    price: 30
+                }
+            }
+        })
+
+        function render(this) {
+            with(this) {
+                return _c(
+                    'div', {
+                        attrs: {
+                            'id': 'app'
+                        }
+                    }, [
+                        _c('p', [_v(_s(price))])
+                    ]
+                )
+            }
+
+        }
+        //===============render(渲染函数) 与vdom====================
+    </script>
+</body>
+
+</html>

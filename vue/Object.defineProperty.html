@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ======================关于Object.defineProperty======
+        1、 介绍
+        a、 Object.defineProperty 可以在一个对象中设置、 修改一个属性、 并返回这个对象。(可以对这个对象新怎属性、 修改属性、 遍历、 存取...通过get获取属性 通过set修改属性)
+        b、 参数
+        Object.defineProperty(obj, prop, descriptor)
+        obj： 需要定义、 修改属性的对象
+        prop： 需要进行定义或者修改的属性。
+        descriptor： 改属性的描述(包含存取描述、 设置描述) 该参数以一个对象的形式传入， 并且改参数有6个选项
+        1、 value 设定改属性的值
+        2、 writable 布尔值， 该属性是否可以写入（ 是否可以改变value的值)
+        3、 enumerable: 布尔， 该属性是否可被遍历得到（
+        for...in， Object.keys等）；
+        4、 configurable: 布尔， 设定该属性是否可被删除， 且除writable外的其他描述符是否可被修改；
+        5、 get: 函数， 该属性的值被获取时执行的回调函数（ 例如console.log(prop)）， 默认为undefined；
+        6、 set: 函数， 该属性的值被设置时执行的回调函数， 默认为undefined；
+
+        let obj = {
+
+        }
+        Object.defineProperty(obj, 'a', {
+                value: 123, // 该属性值为123
+                enumerable: false, // 不可被遍历得到
+                writable: false, // 不可被重新写入
+                configurable: false // 不可被删除，且enumerable和value不能通过Object.defineProperty重新定义
+            })
+            // 使用get和set
+        let obj = {
+            // 设定默认值
+            _data: {
+                a: 123
+            }
+        }
+        Object.defineProperty(obj, 'a', {
+                get() {
+                    // 当获取a时执行
+                    console.log('a被获取了')
+                    return obj._data.a
+                },
+                set(value) {
+                    // 当修改a时执行
+                    obj._data.a = value
+                    console.log('a的值被修改了')
+                }
+            })
+            //vue不兼容ie8的原因
+
+        Vue.js使用了IE8不能模拟的ECMAScript5特性.Vue.js支持所有兼容ES5的浏览器.
+        Vue将遍历此对象所有的属性, 并使用Object.defineProperty把这些属性全部转为getter / setter.
+        Object.defindProperty是仅ES5支持, 且无法shim的特性.
+        指把一个库引入一个旧的浏览器, 然后用旧的API, 实现一些新的API的功能.
+    </script>
+</body>
+
+</html>

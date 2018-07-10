@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、 共同点
+        // 都是指向绑定他的对象
+        // 2、 不同点
+        // call call可以收多个参数 参数1 指向绑定的对象， 参数2 指传递的参数
+        // apply 的区别 接收2个参数 参数1 指向绑定的对象， 参数2 是一个数组可以传多个参数
+
+        // bind直接改变这个函数的指向， 并返回一个新的函数, 之后再次调用这个函数的时候， this都是指定bind绑定的第一个参数，bind的传参方式与call的传参方式一致
+        const cat = {
+                name: '小黑',
+                eatFish(...args) {
+                    console.log('this指向=>', this);
+                    console.log('...args', args);
+                    console.log(this.name + '吃鱼');
+                },
+            }
+            // 有只狗叫大毛，大毛会吃骨头
+        const dog = {
+                name: '大毛',
+                eatBone(...args) {
+                    console.log('this指向=>', this);
+                    console.log('...args', args);
+                    console.log(this.name + '吃骨头');
+                },
+            }
+            // cat.eatFish.call(dog, '汪汪汪', 'call')
+            // dog.eatBone.call(cat, '喵喵', 'call')
+
+        // cat.eatFish.apply(dog, ['汪汪汪', 'apply']);
+        // dog.eatBone.apply(cat, ['喵喵', 'apply'])
+
+        var test1 = cat.eatFish.bind(dog, '汪汪汪', 'bind');
+        var test2 = dog.eatBone.bind(cat, '喵喵', 'bind')
+        test1()
+        test2()
+    </script>
+</body>
+
+</html>

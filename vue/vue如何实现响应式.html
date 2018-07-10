@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // vue的三要素
+        // 响应式
+        // 模板引擎
+        // 渲染过程
+        // ==================vue如何监听到data的每个属性的变化=====
+        // var obj = {
+        //         name: "施坑",
+        //         age: 18
+        //     }
+        //     // console.log(obj.name)
+        //     // obj.age = 30
+        //     // console.log(obj.age)
+        // var sex = "男"
+        // Object.defineProperty(obj, "sex", {
+        //     get() {
+        //         console.log('get', sex)
+        //             //console.log(name);
+        //         return name
+        //     },
+        //     set(value) {
+        //         console.log('set');
+        //         console.log(value);
+        //         sex = value
+        //     }
+        // })
+        // obj.sex = "女"
+        // console.log(obj.sex)
+        //模拟vue响应式的过程
+
+        var vm = {}
+        var data = {
+            name: "施坑",
+            age: 20,
+            sex: '男'
+        }
+
+        for (let key in data) {
+            (function(key) {
+                Object.defineProperty(vm, key, {
+                    get() {
+                        console.log('get');
+                        return data[key]
+                    },
+                    set(value) {
+                        console.log('set')
+                        data[key] = value
+                    }
+                })
+            })(key)
+        }
+        console.log(vm.name)
+        data.name = "是坑货"
+        console.log(vm.name)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ===========================箭头函数与普通函数的区别=======
+        // 1、 写法上的区别
+        // 省略了function、 return关键字
+        // 2、 this指向
+        // a、 普通函数的this指向函数的直接调用者(例如obj.function 函数中的this就是obj)
+        // b、 在默认情况下(非严格模式下 'use strict') 没有直接调用者， 此时的函数中的this指向window
+        // c、 在严格模式下('use strcit') 函数没有直接调用者， 此时 this是undefiend
+        // d、 使用call、 bind、 bind绑定的， this指向的是绑定的对象
+        // e、 匿名函数， 定时器中的函数， 由于没有宿主对象， 此时this会指向window
+
+        // 箭头函数的this指向
+        // a、 默认指向在定义它是所处的对象， 而不是执行时的对象
+        window.val = 1;
+        var obj = {
+            val: 2,
+            dbl: function() {
+                // console.log(val)
+                // console.log(this.val)
+                this.val *= 2;
+                val *= 2;
+                console.log(val);
+                console.log(this.val);
+            }
+        };
+        // 说出下面的输出结果
+        obj.dbl();
+        var func = obj.dbl;
+        func();
+    </script>
+</body>
+
+</html>
